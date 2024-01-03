@@ -11,9 +11,10 @@ class ViewController: UIViewController {
     
     @IBOutlet var cntButtons: [UILabel]!
     
+    var count = [0, 0, 0, 0, 0, 0, 0, 0, 0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setInitialNumber()
     }
     
@@ -22,15 +23,16 @@ class ViewController: UIViewController {
     }
     
     func setInitialNumber() {
-        for cntButton in cntButtons {
-            cntButton.text = "\(getRandomNumber())"
+        for idx in 0..<count.count {
+            count[idx] = getRandomNumber()
+            cntButtons[idx].text = "\(count[idx])"
         }
     }
     
     @IBAction func imageClicked(_ sender: UITapGestureRecognizer) {
         let id = sender.view!.tag
-        let num = Int(cntButtons[id].text!)! + 1
-        cntButtons[id].text = "\(num)"
+        count[id] += 1
+        cntButtons[id].text = "\(count[id])"
     }
 }
 
